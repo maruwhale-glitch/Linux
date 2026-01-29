@@ -1,8 +1,0 @@
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/CPU_RV32I.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/ControlUnit.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/DataPath.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/MCU.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/RAM.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/ROM.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/rtl/defines.sv
-/home/aedu18/SUN/0128_RISCV_SingleCycle/testbench/tb_riscv.sv

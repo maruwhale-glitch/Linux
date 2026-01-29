@@ -1,0 +1,14 @@
+# 시뮬레이션 찌꺼기 제외
+*Log/
+*.log
+*.key
+*.bat
+*.fsdb
+*.vcd
+*.conf
+*.rc
+
+# 컴파일 결과물 제외
+simv
+simv.daidir/
+csrc/
