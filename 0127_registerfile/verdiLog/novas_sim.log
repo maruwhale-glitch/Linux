@@ -1,0 +1,235 @@
+Verdi>restart
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Jan 27 19:06 2026
+Warning : License for product VCS-BASE-RUNTIME will expire within 23 days, on: 18-feb-2026.
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+*Verdi* Loading libsscore_vcs202409.so
+FSDB Dumper for VCS, Release Verdi_W-2024.09-SP2, Linux x86_64/64bit, 03/03/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file '/home/aedu18/SUN/0127_registerfile/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+*Verdi* : Enable RPC Server(2882871)
+*Verdi* : Flush all FSDB Files at 0 ps.
+Verdi>stop -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv 
+1
+Verdi>run
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/aedu18/SUN/0127_registerfile/inter.fsdb". Fsdbfile name in task "build/wave.fsdb" is ignored.
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+
+Stop point #1 @ 0 ps;  
+Verdi>next
+tb_registerfile.sv, 53 :         for (int i = 0; i < 32; i++) mem[i] = 0;
+Verdi>next
+tb_registerfile.sv, 121 :         #10;
+Verdi>run
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 8 == RD1 : 8
+pass! Expected : 8 == RD2 : 8
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 4 == RD1 : 4
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 15 == RD2 : 15
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 8 == RD1 : 8
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 2 == RD1 : 2
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 8 == RD2 : 8
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 2 == RD2 : 2
+pass! Expected : 2 == RD1 : 2
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 20 == RD1 : 20
+pass! Expected : 16 == RD2 : 16
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 12 == RD2 : 12
+pass! Expected : 3 == RD1 : 3
+pass! Expected : 4 == RD2 : 4
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 4 == RD2 : 4
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 19 == RD2 : 19
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 4 == RD1 : 4
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 9 == RD1 : 9
+pass! Expected : 16 == RD2 : 16
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 16 == RD1 : 16
+pass! Expected : 15 == RD2 : 15
+pass! Expected : 8 == RD1 : 8
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 15 == RD2 : 15
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 18 == RD1 : 18
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 20 == RD1 : 20
+pass! Expected : 19 == RD2 : 19
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 2 == RD1 : 2
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 4 == RD1 : 4
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 3 == RD1 : 3
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 16 == RD1 : 16
+pass! Expected : 4 == RD2 : 4
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 4 == RD2 : 4
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 18 == RD1 : 18
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 2 == RD1 : 2
+pass! Expected : 2 == RD2 : 2
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 2 == RD1 : 2
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 20 == RD1 : 20
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 12 == RD2 : 12
+pass! Expected : 12 == RD1 : 12
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 3 == RD1 : 3
+pass! Expected : 12 == RD2 : 12
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 12 == RD2 : 12
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 19 == RD2 : 19
+pass! Expected : 12 == RD1 : 12
+pass! Expected : 12 == RD2 : 12
+pass! Expected : 9 == RD1 : 9
+pass! Expected : 0 == RD2 : 0
+pass! Expected : 2 == RD1 : 2
+pass! Expected : 11 == RD2 : 11
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 14 == RD1 : 14
+pass! Expected : 14 == RD2 : 14
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 3 == RD2 : 3
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 8 == RD2 : 8
+pass! Expected : 10 == RD1 : 10
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 2 == RD2 : 2
+pass! Expected : 0 == RD1 : 0
+pass! Expected : 14 == RD2 : 14
+pass! Expected : 14 == RD1 : 14
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 19 == RD1 : 19
+pass! Expected : 8 == RD2 : 8
+pass! Expected : 3 == RD1 : 3
+pass! Expected : 4 == RD2 : 4
+pass! Expected : 15 == RD1 : 15
+pass! Expected : 19 == RD2 : 19
+pass! Expected : 12 == RD1 : 12
+pass! Expected : 14 == RD2 : 14
+pass! Expected : 3 == RD1 : 3
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 19 == RD1 : 19
+pass! Expected : 10 == RD2 : 10
+pass! Expected : 4 == RD1 : 4
+pass! Expected : 19 == RD2 : 19
+pass! Expected : 16 == RD1 : 16
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 12 == RD2 : 12
+pass! Expected : 4 == RD1 : 4
+pass! Expected : 9 == RD2 : 9
+pass! Expected : 10 == RD1 : 10
+pass! Expected : 16 == RD2 : 16
+pass! Expected : 17 == RD1 : 17
+pass! Expected : 14 == RD2 : 14
+pass! Expected : 12 == RD1 : 12
+pass! Expected : 17 == RD2 : 17
+pass! Expected : 9 == RD1 : 9
+pass! Expected : 5 == RD2 : 5
+pass! Expected : 13 == RD1 : 13
+pass! Expected : 4 == RD2 : 4
+pass! Expected : 13 == RD1 : 13
+pass! Expected : 17 == RD2 : 17
+$finish called from file "./tb_registerfile/tb_registerfile.sv", line 129.
+$finish at simulation time              1020000
+Simulation complete, time is 1020000 ps.
+tb_registerfile.sv, 129 :         $finish;

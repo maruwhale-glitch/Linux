@@ -1,0 +1,40 @@
+Invoking simulator...
+Verdi>./build/simv -sml=verdi +fsdb+gate=off -ucli2Proc -ucli
+*Verdi* Loading libsscore_vcs202409.so
+FSDB Dumper for VCS, Release Verdi_W-2024.09-SP2, Linux x86_64/64bit, 03/03/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file '/home/aedu18/SUN/0127_registerfile/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+*Verdi* : Enable RPC Server(2880623)
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Jan 27 19:04 2026
+Warning : License for product VCS-BASE-RUNTIME will expire within 23 days, on: 18-feb-2026.
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+Verdi>fsdbDumpvars 0 "tb_registerfile.r_if.clk"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.we"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.RA1"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.RA2"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.WA"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.WD"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.RD1"  +all +trace_process;fsdbDumpvars 0 "tb_registerfile.r_if.RD2"  +all +trace_process
+*Verdi* : Dumping the signal (tb_registerfile.r_if.clk).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.we).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.RA1).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.RA2).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.WA).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.WD).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.RD1).
+*Verdi* : Dumping the signal (tb_registerfile.r_if.RD2).
+*Verdi* : Flush all FSDB Files at 0 ps.
+1
+2
+3
+4
+6
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 0 ps
+CPU Time:      0.040 seconds;       Data structure size:   0.0Mb
+Tue Jan 27 19:04:20 2026
+srcTBSimQuit
+srcHBDrag -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+debExit

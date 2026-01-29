@@ -1,0 +1,158 @@
+2        
+0 defines.sv
+0 /tools/synopsys/vcs/W-2024.09-SP1/etc/systemverilog/defines.sv
+55
++incdir+./rtl
++itf+/tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/vcsdp_lite.tab
++vcsd1
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/tools/synopsys/vcs/W-2024.09-SP1/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvirsim.so /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/liberrorinf.so /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/libsnpsmalloc.so /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvfs.so
+-Mout=./build/simv
+-Msaverestoreobj=/tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=/tools/synopsys/verdi/W-2024.09-SP2/share/PLI/VCS/LINUX64/pli.a -ldl
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/tools/synopsys/vcs/W-2024.09-SP1/include
+-Mxllcflags=
+-P
+-Xfile_begin_f=files.f
+-Xfile_end
+-Xufe=2steps
+-Xufe=2steps
+-Xufe=2steps
+-Xufe=2steps
+-debug_access+all
+-fsdb
+-full64
+-gen_obj
+-kdb
+-kdb=common_elab
+-kdb=common_elab
+-kdb=common_elab
+-l
+-lca
+-o ./build/simv
+-picarchive
+-race=all
+-sverilog
+-timescale=1ns/100ps
+/tools/synopsys/vcs/W-2024.09-SP1/linux64/bin/vcs1
+./build/comp.log
+./build/simv
+/tools/synopsys/verdi/W-2024.09-SP2/share/PLI/VCS/LINUX64/verdi.tab
+./rtl/CPU_RV32I.sv
+./rtl/ControlUnit.sv
+./rtl/ROM.sv
+./rtl/MCU.sv
+./rtl/defines.sv
+./rtl/DataPath.sv
+./rtl/RAM.sv
+./testbench/tb_riscv.sv
+77
+__MODULES_SHARE_MANPATH=:1
+__MODULES_LMINIT=module use --append /usr/share/Modules/modulefiles:module use --append /etc/modulefiles:module use --append /usr/share/modulefiles
+XDG_SESSION_TYPE=tty
+XDG_SESSION_ID=1824
+XDG_SESSION_CLASS=user
+XDG_RUNTIME_DIR=/run/user/1071
+WV_HOME=/tools/synopsys/wv/W-2024.09-SP2-4
+VSCODE_NONCE=1db56878-4333-458b-87e5-9ab779a09301
+VSCODE_IPC_HOOK_CLI=/run/user/1071/vscode-ipc-b39a4a42-4a1c-4332-b32b-89a0a88c6f16.sock
+VSCODE_GIT_IPC_HANDLE=/run/user/1071/vscode-git-14d6e52e1c.sock
+VSCODE_GIT_ASKPASS_NODE=/home/aedu18/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/node
+VSCODE_GIT_ASKPASS_MAIN=/home/aedu18/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass-main.js
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VMR_MODE_FLAG=64
+VERILATOR_ROOT=/home/aedu18/verilator
+VERDI_HOME=/tools/synopsys/verdi/W-2024.09-SP2
+VENDOR=unknown
+VC_STATIC_HOME=/tools/synopsys/vc_static/W-2024.09-2
+VCS_PYTHON3=/tools/synopsys/vcs/W-2024.09-SP1/linux64/bin/Python3/bin/python3
+VCS_PATHMAP_PRELOAD_DONE=1
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LOG_FILE=./build/comp.log
+VCS_LCAMSG_PRINT_OFF=1
+VCS_INTERNAL_CONVERTEDLIBS=
+VCS_HOME=/tools/synopsys/vcs/W-2024.09-SP1
+VCS_EXEC_DONE=1
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UNAME=/bin/uname
+TOOL_HOME=/tools/synopsys/vcs/W-2024.09-SP1/linux64
+TERM_PROGRAM_VERSION=1.108.2
+TERM_PROGRAM=vscode
+S_COLORS=auto
+SYN_HOME=/tools/synopsys/syn/V-2023.12-SP5-4
+SYNOPSYS=/tools/synopsys
+STARRC_HOME=/tools/synopsys/starrc/Q-2019.12-SP5-4
+SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+SSL_CERT_DIR=/etc/pki/tls/certs
+SSH_CONNECTION=10.10.15.17 56610 10.10.15.20 22
+SSH_CLIENT=10.10.15.17 56610 22
+SNPS_VERDI_INTERNAL_LP_XML_NEW_FLOW=1
+SNPS_VCS_VHDL_WRAPPER_KDB=1
+SNPS_VCS_PYTHON3=/tools/synopsys/vcs/W-2024.09-SP1/linux64/bin/Python3/bin/python3
+SNPS_VCS_CLANG_PATH=/tools/synopsys/vcs/W-2024.09-SP1/linux64/clang
+SNPS_INTERNAL_VCS_LINUX_OS=linux
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+PT_HOME=/tools/synopsys/prime/W-2024.09-SP4
+PRIMEWAVE=/tools/synopsys/primewave/W-2024.09-SP2-3
+PRIMESIM_HOME=/tools/synopsys/primesim/W-2024.09-SP2-2
+OVA_UUM=0
+OSTYPE=linux
+MOTD_SHOWN=pam
+MODULES_CMD=/usr/share/Modules/libexec/modulecmd.tcl
+MODULESHOME=/usr/share/Modules
+MODULEPATH=/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles
+MFLAGS=
+MAKE_TERMOUT=/dev/pts/27
+MAKE_TERMERR=/dev/pts/27
+MAKELEVEL=1
+MAKEFLAGS=
+LOADEDMODULES=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_HOME=/tools/synopsys/lc/V-2023.12-SP5-5
+LC_ALL=C
+ICV_HOME_DIR=/tools/synopsys/icvalidator/W-2024.09-SP2-6
+ICC2_HOME=/tools/synopsys/icc2/W-2024.09-SP1
+HSP_HOME=/tools/synopsys/hspice/W-2024.09-SP2-2/hspice
+HOSTTYPE=x86_64-linux
+GROUP=aedu18
+GIT_ASKPASS=/home/aedu18/.vscode-server/cli/servers/Stable-c9d77990917f3102ada88be140d28b038d1dd7c7/server/extensions/git/dist/askpass.sh
+FM_HOME=/tools/synopsys/fm/W-2024.09-SP4
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1071/bus
+CUSTOM_COMPILER=/tools/synopsys/customcompiler/W-2024.09-SP2-3
+COLORTERM=truecolor
+0
+0
+11
+1769584980 ./testbench/tb_riscv.sv
+1769564293 ./rtl/RAM.sv
+1769596266 ./rtl/DataPath.sv
+1769595515 ./rtl/defines.sv
+1769567462 ./rtl/MCU.sv
+1769645751 ./rtl/ROM.sv
+1769596164 ./rtl/ControlUnit.sv
+1769596310 ./rtl/CPU_RV32I.sv
+1769646141 files.f
+1741065587 /tools/synopsys/verdi/W-2024.09-SP2/share/PLI/VCS/LINUX64/verdi.tab
+1733285154 /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/vcsdp_lite.tab
+4
+1733288192 /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvirsim.so
+1733286010 /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/liberrorinf.so
+1733286000 /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/libsnpsmalloc.so
+1733285992 /tools/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvfs.so
+1769646143 ./build/simv.daidir
+-1 partitionlib

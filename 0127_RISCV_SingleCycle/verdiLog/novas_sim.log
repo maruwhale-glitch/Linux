@@ -1,0 +1,67 @@
+Invoking simulator...
+Verdi>./build/simv -sml=verdi +fsdb+gate=off -ucli2Proc -ucli
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Jan 27 16:22 2026
+Warning : License for product VCS-BASE-RUNTIME will expire within 23 days, on: 18-feb-2026.
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+*Verdi* Loading libsscore_vcs202409.so
+FSDB Dumper for VCS, Release Verdi_W-2024.09-SP2, Linux x86_64/64bit, 03/03/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file '/home/aedu18/SUN/0127_RISCV_SingleCycle/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+*Verdi* : Enable RPC Server(2617184)
+Verdi>stop -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv 
+1
+Verdi>stop -disable 1
+1
+Verdi>stop -delete 1
+1
+Verdi>stop -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv 
+2
+Verdi>run
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/aedu18/SUN/0127_RISCV_SingleCycle/inter.fsdb". Fsdbfile name in task "build/wave.fsdb" is ignored.
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+
+Stop point #2 @ 10000 ps;  
+Verdi>run
+[11][DRV], aluControl = 0, a = 0, b = 5, result = 5
+PASS!
+
+Stop point #2 @ 21000 ps;  
+Verdi>next
+tb_alu.sv, 50 :         a_if.aluControl = t.aluControl;
+Verdi>next
+DataPath.sv, 56 :     always_comb begin
+Verdi>next
+tb_alu.sv, 103 :             #1;
+Verdi>next
+DataPath.sv, 57 :         result = 0;
+Verdi>next
+DataPath.sv, 58 :         case (aluControl)
+Verdi>next
+DataPath.sv, 68 :             `AND: result = a & b;
+Verdi>next
+tb_alu.sv, 104 :             John.receive();
+Verdi>next
+[22][DRV], aluControl = 7, a = 2, b = 2, result = 2
+PASS!
+tb_alu.sv, 100 :         for (int i = 0; i < 100; i++) begin
+Verdi>next
+tb_alu.sv, 101 :             #10;
+Verdi>next
+tb_alu.sv, 102 :             John.send();
+Verdi>next
+Stop point #2 @ 32000 ps;  
+Verdi>next
+tb_alu.sv, 50 :         a_if.aluControl = t.aluControl;
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 32000 ps
+CPU Time:      0.150 seconds;       Data structure size:   0.0Mb
+Tue Jan 27 16:47:11 2026
+debExit

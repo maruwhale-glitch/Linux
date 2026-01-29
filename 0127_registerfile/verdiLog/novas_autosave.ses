@@ -1,0 +1,108 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = TRUE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 
+VerdiVersion = Verdi_W-2024.09-SP2
+[KeyNote]
+Line1 = Automatic Backup 0
+Line2 = Save Open Database Information: Yes
+Line3 = Path Option: Absolute Paths
+Line4 = Windows Option: All Windows
+[OneSearch]
+isExisted = TRUE
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+Console = TRUE
+powerDumped = 0
+breakpoint_count = 6
+BP1 = stop -line 67 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv -disable
+BP2 = stop -line 58 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv -disable
+BP3 = stop -line 78 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv -disable
+BP4 = stop -line 85 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv -disable
+BP5 = stop -line 126 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv -disable
+BP6 = stop -line 86 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv -disable
+[fusa]
+fdb_server = 
+fdb_proj = 
+fdb_campaign = 
+fdb_tool = 
+[hb]
+postSimFile = /home/aedu18/SUN/0127_registerfile/inter.fsdb
+syncTime = 0
+viewport = 0 23 2560 1369 0 0 290 898
+activeNode = "tb_registerfile.drv"
+activeScope = "tb_registerfile.drv"
+activeFile = "./tb_registerfile/tb_registerfile.sv"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 43
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+safetyAwareAnnot = True
+amsAnnot = True
+DnDtraceCrossHierOnly = True
+leadingZero = False
+signalPane = False
+SourceVerticalScrollLines = 5
+Scope1 = "tb_registerfile.drv"
+Scope2 = "tb_registerfile.unnamed$$_0"
+Scope3 = "tb_registerfile.drv.send"
+Scope4 = "tb_registerfile"
+Scope5 = "tb_registerfile.drv.receive"
+Scope6 = "MCU"
+multipleSelection = 1 43 2 0 0
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "-dbdir" "./build/simv.daidir" 
+invokeDir = /home/aedu18/SUN/0127_registerfile
+[hb.sourceTab.1]
+scope = tb_registerfile.drv
+File = /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+Line = 44
+[nMemoryManager]
+WaveformFile = /home/aedu18/SUN/0127_registerfile/inter.fsdb
+UserActionNum = 0
+nMemWindowNum = 0
+[wave.0]
+viewPort = 0 25 1701 581 100 65
+primaryWindow = TRUE
+SessionFile = /home/aedu18/SUN/0127_registerfile/verdiLog/novas_autosave.ses.wave.0
+displayGrid = FALSE
+hierarchicalName = FALSE
+waveformToolTip = FALSE
+snap = TRUE
+displayLeadingZeros = FALSE
+displayGridLine = FALSE
+fixDelta = FALSE
+displayCursorMarker = FALSE
+autoUpdate = FALSE
+highlightGlitchs = FALSE
+waveformSyncCursorMarker = FALSE
+waveformSyncHorizontalRange = FALSE
+waveformSyncVerticalscroll = FALSE
+displayErrors = TRUE
+displayMsgSymbols = TRUE
+showMsgDescriptions = TRUE
+autoFit = FALSE
+displayDeltaY = FALSE
+centerCursor = FALSE
+fsaRegMask = TRUE
+fsaCoreMask = TRUE
+fsaSfsmMask = TRUE
+fsaEcrMask = TRUE
+tPropMask = TRUE

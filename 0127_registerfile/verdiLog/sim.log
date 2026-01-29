@@ -1,0 +1,962 @@
+Command: /home/aedu18/SUN/0127_registerfile/build/simv -sml=verdi +fsdb+gate=off -ucli2Proc -ucli -l /home/aedu18/SUN/0127_registerfile/verdiLog/sim.log
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Jan 27 19:06 2026
+Warning : License for product VCS-BASE-RUNTIME will expire within 23 days, on: 18-feb-2026.
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+
+ucli% loaddl -simv /tools/synopsys/verdi/W-2024.09-SP2/share/PLI/VCS/LINUXAMD64/libnovas.so LoadFSDBDumpCmd;LoadFSDBDumpCmd
+LoadFSDBDumpCmd success
+ucli% config ckptfsdbcheck off;config endofsim noexit;config onfail {enable all};config followactivescope on;catch {setUcliVerdiConnected};set watch::resultTagsForVerdiBP {<ucli_break_bp_status_begin> <ucli_break_bp_status_end>};set ucliCore::support_restore_through_stask_in_verdi 1;cbug::config pretty_print auto;fsdbDumpfile {/home/aedu18/SUN/0127_registerfile/inter.fsdb} ;fsdbDumpflush ; 
+*Verdi* Loading libsscore_vcs202409.so
+FSDB Dumper for VCS, Release Verdi_W-2024.09-SP2, Linux x86_64/64bit, 03/03/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file '/home/aedu18/SUN/0127_registerfile/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2882871
+ucli% sps_interactive
+*Verdi* : Enable RPC Server(2882871)
+
+ucli% ucliCore::getToolPID
+2882871
+ucli% ucliCore::getToolPID
+2882871
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% puts $ucliCore::nativeUcliMode
+0
+
+ucli% ucliCore::getToolTopPID
+2882871
+ucli% pid
+2882895
+ucli% synUtils::sendTool -active {_icl_createSharedMemory /tmp/vcs_dve_general.aedu18.2882871 }
+
+ucli% if { [info vars watch::vcbp_str_len_limit_of_get_value] != ""} {set watch::vcbp_str_len_limit_of_get_value 1024}
+1024
+ucli% info command stateVerdiChangeCB
+
+ucli% proc stateVerdiChangeCB args { if {$ucliGUI::state eq "terminated"} {puts "\n<VERDI_Terminated>\n";catch {setVerdiSimTerminated}}}
+
+ucli% trace variable ucliGUI::state wu stateVerdiChangeCB
+
+ucli% if {[catch {rename synopsys::restore verdiHack::restore} ]} {puts "0"}
+
+ucli% proc synopsys::restore {args} { verdiHack::restore $args; puts "\n<VERDI_RESTORE>\n"}
+
+ucli% if {[catch {rename quit verdiHack::quit} ]} {puts "0"}
+
+ucli% proc quit {args} { if {[string length $args] == 0} { verdiHack::quit; } elseif {([string equal "-h" $args] == 1)||([string equal "-he" $args] == 1)||([string equal "-hel" $args] == 1)||([string equal "-help" $args] == 1)} { puts "\n quit           # Exit the simulation.\n \[-noprompt\]        (Exit the simulation and Verdi.)\n"} elseif {([string equal "-n" $args] == 1)||([string equal "-no" $args] == 1)||([string equal "-nop" $args] == 1)||([string equal "-nopr" $args] == 1)||([string equal "-nopro" $args] == 1)||([string equal "-noprom" $args] == 1)||([string equal "-nopromp" $args] == 1)||([string equal "-noprompt" $args] == 1)} { puts "\nVERDI_EXIT_N\n" } else { verdiHack::quit $args; } }
+
+ucli% if {[catch {rename exit verdiHack::exit} ]} {puts "0"}
+
+ucli% proc exit {args} { if {[string length $args] == 0} { verdiHack::exit; } elseif {([string equal "-h" $args] == 1)||([string equal "-he" $args] == 1)||([string equal "-hel" $args] == 1)||([string equal "-help" $args] == 1)} { puts "\n exit           # Exit the simulation.\n \[-noprompt\]        (Exit the simulation and Verdi.)\n"} elseif {([string equal "-n" $args] == 1)||([string equal "-no" $args] == 1)||([string equal "-nop" $args] == 1)||([string equal "-nopr" $args] == 1)||([string equal "-nopro" $args] == 1)||([string equal "-noprom" $args] == 1)||([string equal "-nopromp" $args] == 1)||([string equal "-noprompt" $args] == 1)} { puts "\nVERDI_EXIT_N\n" } else { verdiHack::exit $args; } }
+
+ucli% proc checkpoint::beforeRecreate {} { sps_interactive }
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% set ucliCore::resultTagsForVerdi [list <?special_verdi_begin?> <?special_verdi_end?>]
+<?special_verdi_begin?> <?special_verdi_end?>
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: ./rtl/MCU.sv
+activeFrame: -1
+activeLine: 3
+activeScope: MCU
+activeThread: 5
+endCol: 0
+file: ./rtl/MCU.sv
+frame: -1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 3
+logFilename: /home/aedu18/SUN/0127_registerfile/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2882871
+scope: MCU
+startCol: 0
+state: stopped
+thread: 5
+time: 0
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./rtl/MCU.sv
+./rtl/MCU.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+No stop points are set
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv 
+1
+ucli% stop -show 1
+1: -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% run
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/aedu18/SUN/0127_registerfile/inter.fsdb". Fsdbfile name in task "build/wave.fsdb" is ignored.
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+
+Stop point #1 @ 0 ps;  
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2882871
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./tb_registerfile/tb_registerfile.sv
+activeFrame: 1
+activeLine: 52
+activeScope: _vcs_unit__4181568205.\driver::new 
+activeThread: 8
+endCol: 0
+file: ./tb_registerfile/tb_registerfile.sv
+frame: 1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 52
+logFilename: /home/aedu18/SUN/0127_registerfile/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2882871
+scope: _vcs_unit__4181568205.\driver::new 
+startCol: 0
+state: stopped
+thread: 8
+time: 0
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./tb_registerfile/tb_registerfile.sv
+./tb_registerfile/tb_registerfile.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+1: -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_registerfile.sv, 53 :         for (int i = 0; i < 32; i++) mem[i] = 0;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2882871
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./tb_registerfile/tb_registerfile.sv
+activeFrame: 2
+activeLine: 53
+activeScope: _vcs_unit__4181568205.\driver::new .unnamed$$_0
+activeThread: 8
+endCol: 0
+file: ./tb_registerfile/tb_registerfile.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 53
+logFilename: /home/aedu18/SUN/0127_registerfile/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2882871
+scope: _vcs_unit__4181568205.\driver::new .unnamed$$_0
+startCol: 0
+state: stopped
+thread: 8
+time: 0
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./tb_registerfile/tb_registerfile.sv
+./tb_registerfile/tb_registerfile.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+1: -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_registerfile.sv, 121 :         #10;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2882871
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./tb_registerfile/tb_registerfile.sv
+activeFrame: 0
+activeLine: 121
+activeScope: tb_registerfile
+activeThread: 8
+endCol: 0
+file: ./tb_registerfile/tb_registerfile.sv
+frame: 0
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 121
+logFilename: /home/aedu18/SUN/0127_registerfile/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2882871
+scope: tb_registerfile
+startCol: 0
+state: stopped
+thread: 8
+time: 0
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./tb_registerfile/tb_registerfile.sv
+./tb_registerfile/tb_registerfile.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+1: -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% run
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 16000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 16000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 26000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 26000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 36000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 36000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 46000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 46000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 56000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 56000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 66000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 66000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 76000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 76000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 86000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 86000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 96000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 96000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 106000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 106000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 116000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 116000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 126000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 126000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 136000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 136000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 146000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 146000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD1 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 156000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD2 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 156000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 166000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 166000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 176000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 176000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 186000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 186000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 196000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 196000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 206000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 206000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 216000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 216000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD1 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 226000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 226000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 236000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD2 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 236000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 246000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 246000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 256000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 256000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD1 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 266000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 266000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD1 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 276000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 276000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 286000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD2 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 286000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 296000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD2 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 296000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD1 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 306000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 306000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 20 == RD1 : 20
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 316000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 16 == RD2 : 16
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 316000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 326000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD2 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 326000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD1 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 336000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD2 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 336000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 346000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD2 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 346000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 356000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 356000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 366000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 366000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 376000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 376000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 386000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 386000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 396000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD2 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 396000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 406000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 406000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD1 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 416000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 416000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD1 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 426000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 16 == RD2 : 16
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 426000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 436000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 436000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 16 == RD1 : 16
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 446000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD2 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 446000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD1 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 456000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 456000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 466000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 466000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 476000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 476000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 486000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD2 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 486000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 496000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 496000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 18 == RD1 : 18
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 506000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 506000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 20 == RD1 : 20
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 516000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD2 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 516000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 526000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 526000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD1 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 536000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 536000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD1 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 546000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 546000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 556000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 556000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD1 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 566000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 566000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 16 == RD1 : 16
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 576000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD2 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 576000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 586000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD2 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 586000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 596000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 596000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 606000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 606000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 18 == RD1 : 18
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 616000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 616000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 626000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 626000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD1 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 636000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD2 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 636000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 646000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 646000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD1 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 656000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 656000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 666000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 666000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 20 == RD1 : 20
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 676000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 676000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 686000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD2 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 686000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD1 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 696000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 696000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD1 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 706000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD2 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 706000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 716000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD2 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 716000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 726000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 726000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 736000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD2 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 736000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD1 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 746000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD2 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 746000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD1 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 756000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD2 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 756000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD1 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 766000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 11 == RD2 : 11
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 766000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 776000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 776000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 14 == RD1 : 14
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 786000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 14 == RD2 : 14
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 786000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD2 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 806000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD2 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 806000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 10 == RD1 : 10
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 816000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 816000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 826000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 2 == RD2 : 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 826000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 0 == RD1 : 0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 836000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 14 == RD2 : 14
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 836000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 14 == RD1 : 14
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 846000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 846000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD1 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 856000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 8 == RD2 : 8
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 856000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD1 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 866000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD2 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 866000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 15 == RD1 : 15
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 876000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD2 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 876000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD1 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 886000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 14 == RD2 : 14
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 886000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 3 == RD1 : 3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 896000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 896000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD1 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 906000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 10 == RD2 : 10
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 906000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD1 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 916000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 19 == RD2 : 19
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 916000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 16 == RD1 : 16
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 926000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 926000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 936000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD2 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 936000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD1 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 946000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD2 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 946000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 10 == RD1 : 10
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 956000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 16 == RD2 : 16
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 956000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD1 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 966000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 14 == RD2 : 14
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 966000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 12 == RD1 : 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 976000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 976000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 9 == RD1 : 9
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 986000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 5 == RD2 : 5
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 986000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 13 == RD1 : 13
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 996000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 4 == RD2 : 4
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 996000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 13 == RD1 : 13
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 78<sls!&*()_+>time: 1006000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+pass! Expected : 17 == RD2 : 17
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./tb_registerfile/tb_registerfile.sv<sls!&*()_+>line: 85<sls!&*()_+>time: 1006000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+$finish called from file "./tb_registerfile/tb_registerfile.sv", line 129.
+$finish at simulation time              1020000
+Simulation complete, time is 1020000 ps.
+tb_registerfile.sv, 129 :         $finish;
+
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2882871
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 1,020,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./tb_registerfile/tb_registerfile.sv
+activeFrame: 0
+activeLine: 129
+activeScope: tb_registerfile
+activeThread: 8
+endCol: 0
+file: ./tb_registerfile/tb_registerfile.sv
+frame: 0
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 129
+logFilename: /home/aedu18/SUN/0127_registerfile/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2882871
+scope: tb_registerfile
+startCol: 0
+state: stopped
+thread: 8
+time: 1020000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./tb_registerfile/tb_registerfile.sv
+./tb_registerfile/tb_registerfile.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+1: -line 52 -file /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% 

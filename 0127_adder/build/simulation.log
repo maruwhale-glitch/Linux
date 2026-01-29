@@ -1,0 +1,17 @@
+Command: /home/aedu18/SUN/0127_adder/./build/simv -l ./build/simulation.log
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Jan 27 15:41 2026
+*Verdi* Loading libsscore_vcs202409.so
+FSDB Dumper for VCS, Release Verdi_W-2024.09-SP2, Linux x86_64/64bit, 03/03/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'build/wave.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+$finish called from file "./testbench/tb_adder.sv", line 28.
+$finish at simulation time                  500
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 50000 ps
+CPU Time:      0.130 seconds;       Data structure size:   0.0Mb
+Tue Jan 27 15:41:01 2026

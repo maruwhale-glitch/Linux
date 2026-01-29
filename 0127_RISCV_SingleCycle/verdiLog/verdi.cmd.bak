@@ -1,0 +1,430 @@
+verdiSetActWin -dock widgetDock_<Watch>
+simSetSimulator "-vcssv" -exec "./build/simv" -args
+debImport "-dbdir" "./build/simv.daidir"
+wvCreateWindow
+wvOpenFile -win $_nWave2 \
+           {/home/aedu18/SUN/0127_RISCV_SingleCycle/build/wave.fsdb}
+verdiSetActWin -win $_nWave2
+verdiWindowResize -win $_Verdi_1 "830" "370" "900" "867"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+schCreateWindow -delim "." -win $_nSchema1 -scope "MCU"
+verdiSetActWin -win $_nSchema_3
+verdiWindowResize -win $_Verdi_1 "1286" "264" "900" "867"
+verdiWindowResize -win $_Verdi_1 "1281" "31" "1278" "1360"
+schSelect -win $_nSchema3 -inst "U_ROM"
+schSelect -win $_nSchema3 -inst "U_RV32I_CORE"
+schSelect -win $_nSchema3 -inst "U_RV32I_CORE"
+schPushViewIn -win $_nSchema3
+schZoomOut -win $_nSchema3 -pos 10165 -449
+schZoomOut -win $_nSchema3 -pos 10165 -450
+schZoomIn -win $_nSchema3 -pos 16441 -2687
+schZoomIn -win $_nSchema3 -pos 16440 -2687
+schCreateWindow -delim "." -win $_nSchema1 -scope "MCU"
+verdiSetActWin -win $_nSchema_4
+srcSignalView -on
+verdiSetActWin -dock widgetDock_<Signal_List>
+schSelect -win $_nSchema4 -inst "U_RV32I_CORE"
+schSelect -win $_nSchema4 -inst "U_ROM"
+schPushViewIn -win $_nSchema4
+verdiSetActWin -win $_nSchema_4
+schLastView -win $_nSchema4
+schSelect -win $_nSchema4 -inst "U_RV32I_CORE"
+schPushViewIn -win $_nSchema4
+schSelect -win $_nSchema4 -inst "U_ControlUnit"
+schPushViewIn -win $_nSchema4
+schLastView -win $_nSchema4
+schSelect -win $_nSchema4 -inst "U_DataPath"
+schPushViewIn -win $_nSchema4
+srcHBSelect "tb_alu" -win $_nTrace1
+srcSetScope "tb_alu" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcSetScope "tb_alu.a_if" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcSetScope "tb_alu.a_if" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcSetScope "tb_alu.a_if" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+srcSignalViewSelect "tb_alu.a_if.aluControl\[3:0\]"
+srcSignalViewSelect "tb_alu.a_if.aluControl\[3:0\]" "tb_alu.a_if.a\[31:0\]"
+srcSignalViewSelect "tb_alu.a_if.aluControl\[3:0\]" "tb_alu.a_if.a\[31:0\]" \
+           "tb_alu.a_if.b\[31:0\]"
+verdiSetActWin -dock widgetDock_<Signal_List>
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcSelect -win $_nTrace1 -range {5 9 1 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+srcSignalViewSelect "tb_alu.a_if.aluControl\[3:0\]"
+srcSignalViewSelect "tb_alu.a_if.aluControl\[3:0\]" "tb_alu.a_if.a\[31:0\]"
+srcSignalViewSelect "tb_alu.a_if.aluControl\[3:0\]" "tb_alu.a_if.a\[31:0\]" \
+           "tb_alu.a_if.b\[31:0\]" "tb_alu.a_if.result\[31:0\]"
+verdiSetActWin -dock widgetDock_<Signal_List>
+srcHBSelect "tb_alu" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcSelect -win $_nTrace1 -range {5 11 1 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {5 9 1 1 1 1} -backward
+srcTBInvokeSim
+verdiSetActWin -win $_InteractiveConsole_5
+verdiDockWidgetSetCurTab -dock windowDock_nWave_2
+verdiSetActWin -win $_nWave2
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_alu" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+wvDumpScope "tb_alu.a_if"
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 0)}
+wvRenameGroup -win $_nWave2 {G1} {a_if(alu_if)}
+wvAddSignal -win $_nWave2 "/tb_alu/a_if/aluControl\[3:0\]" \
+           "/tb_alu/a_if/a\[31:0\]" "/tb_alu/a_if/b\[31:0\]" \
+           "/tb_alu/a_if/result\[31:0\]"
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 0)}
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 4)}
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 4)}
+wvSetPosition -win $_nWave2 {("G2" 0)}
+wvSelectGroup -win $_nWave2 {G2}
+verdiSetActWin -win $_nWave2
+srcTBRunSim
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_alu" -win $_nTrace1
+srcHBSelect "tb_alu" -win $_nTrace1
+srcSetScope "tb_alu" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {13 17 1 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {12 16 1 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+wvSetCursor -win $_nWave2 1141205.224460 -snap {("a_if(alu_if)" 0)}
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+verdiSetActWin -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoom -win $_nWave2 26143637.202454 33039793.472393
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+wvZoomIn -win $_nWave2
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcSetScope "tb_alu.unnamed\$\$_0" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "_vcs_unit__3408247080" -win $_nTrace1
+srcSetScope "_vcs_unit__3408247080" -delim "." -win $_nTrace1
+srcHBSelect "_vcs_unit__3408247080" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcSetScope "tb_alu.unnamed\$\$_0" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcSignalViewSelect "tb_alu.unnamed\$\$_0.i\[31:0\]"
+verdiSetActWin -dock widgetDock_<Signal_List>
+srcHBSelect "tb_alu" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {53 63 3 1 2 1}
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {55 67 1 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcSetScope "tb_alu.unnamed\$\$_0" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcHBSelect "tb_alu" -win $_nTrace1
+srcSetScope "tb_alu" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu" -win $_nTrace1
+srcHBSelect "tb_alu.dut" -win $_nTrace1
+srcSetScope "tb_alu.dut" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.dut" -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcSetScope "tb_alu.a_if" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcSetScope "tb_alu.unnamed\$\$_0" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.unnamed\$\$_0" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {4 10 3 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -word -line 37 -pos 2 -win $_nTrace1
+srcAction -pos 37 2 3 -win $_nTrace1 -name "driver" -ctrlKey off
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_alu.John"
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcSetScope "tb_alu.a_if" -delim "." -win $_nTrace1
+srcHBDrag -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_alu.a_if" -scope
+srcHBSelect "tb_alu.John" -win $_nTrace1
+srcSetScope "tb_alu.John" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.John.receive" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 0)}
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 1)}
+wvSetPosition -win $_nWave2 {("a_if(alu_if)" 0)}
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_alu.John.receive" -scope
+srcHBSelect "tb_alu.a_if" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_alu.a_if" -scope
+srcHBSelect "tb_alu.John" -win $_nTrace1
+srcHBSelect "tb_alu.John" -win $_nTrace1
+srcSetScope "tb_alu.John" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.John" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_alu.John" -scope
+srcTBDVSelect -tab 1 -range {5-5} 
+verdiSetActWin -dock widgetDock_<Watch>
+srcTBDVShowDefine -win $_nTrace1 -tab 1
+srcTBDVDC -win $_nTrace1 -tab 1
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {6} -level 1
+srcTBDVSelect -tab 1 -range {5 4-4} 
+srcTBDVSelect -tab 1 -range {5 3-4} 
+srcTBDVSelect -tab 1 -range {5 2-4} 
+srcTBDVSelect -tab 1 -range {5 1-4} 
+srcTBDVSelect -tab 1 -range {5 0-4} 
+srcTBDVSelect -tab 1 -range {5 0-4} {5-5} 
+srcTBDVSelect -tab 1 -range {5 0-4} {4-5} 
+srcTBDVSelect -tab 1 -range {5 0-4} {3-5} 
+srcTBDVSelect -tab 1 -range {5 0-4} {2-5} 
+srcTBDVSelect -tab 1 -range {5 0-4} {1-5} 
+srcTBDVSelect -tab 1 -range {5 0-4} {0-5} 
+srcTBDeleteDataTree -win $_nTrace1 -tab 1 -tree "t"
+srcTBDeleteDataTree -win $_nTrace1 -tab 1 -tree "a\[31:0\]"
+srcTBDeleteDataTree -win $_nTrace1 -tab 1 -tree "a_if"
+srcTBDeleteDataTree -win $_nTrace1 -tab 1 -tree "aluControl\[3:0\]"
+srcTBDeleteDataTree -win $_nTrace1 -tab 1 -tree "b\[31:0\]"
+srcTBDeleteDataTree -win $_nTrace1 -tab 1 -tree "result\[31:0\]"
+srcHBSelect "tb_alu.John" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcSetScope "tb_alu.John" -delim "." -win $_nTrace1
+srcSetScope "tb_alu.John" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.John" -win $_nTrace1
+srcSetScope "tb_alu.John" -delim "." -win $_nTrace1
+srcHBSelect "tb_alu.John" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_alu.John" -scope
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -word -line 47 -pos 5 -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Watch>
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {1} -level 1
+srcTBDVCollapse -win $_nTrace1 -tab 1 -item {1} -level 1
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {2} -level 1
+srcTBDVCollapse -win $_nTrace1 -tab 1 -item {2} -level 1
+srcTBDVSelect -tab 1 -range {0-0} 
+srcTBDVShowDefine -win $_nTrace1 -tab 1
+srcTBDVDC -win $_nTrace1 -tab 1
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {1} -level 1
+srcTBDVSelect -tab 1 -range {0 0-0} 
+srcTBDVSelect -tab 1 -range {0 2-2} 
+srcTBDVShowDefine -win $_nTrace1 -tab 1
+srcTBDVDC -win $_nTrace1 -tab 1
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {1 2} -level 1
+srcTBDVSelect -tab 1 -range {0 2-2} 
+srcTBDVShowDefine -win $_nTrace1 -tab 1
+srcTBDVDC -win $_nTrace1 -tab 1
+srcTBDVCollapse -win $_nTrace1 -tab 1 -item {1 2} -level 1
+srcTBDVSelect -tab 1 -range {1-1} 
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {2} -level 1
+srcSelect -win $_nTrace1 -range {98 98 1 6 1 1}
+srcTBAddBrkPnt -line 98 -file \
+           /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcSelect -win $_nTrace1 -range {98 98 1 6 1 1}
+srcTBSetBrkPnt -disable -index 1
+srcSelect -win $_nTrace1 -range {98 98 1 6 1 1}
+srcTBSetBrkPnt -delete -index 1
+srcSelect -win $_nTrace1 -range {98 98 1 6 1 1}
+srcTBAddBrkPnt -line 98 -file \
+           /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+srcSelect -win $_nTrace1 -range {98 98 1 6 1 1}
+srcTBSetBrkPnt -disable -index 2
+srcSelect -win $_nTrace1 -range {99 99 1 5 1 1}
+srcTBAddBrkPnt -line 99 -file \
+           /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+srcSelect -win $_nTrace1 -range {98 98 1 6 1 1}
+srcTBSetBrkPnt -delete -index 2
+srcTBSimReset
+srcShowDefine -win $_nTrace1
+srcTBRunSim
+srcTBDVSelect -tab 1 -range {1 0-0} 
+verdiSetActWin -dock widgetDock_<Watch>
+srcTBDVShowDefine -win $_nTrace1 -tab 1
+srcTBDVDC -win $_nTrace1 -tab 1
+verdiDockWidgetSetCurTab -dock windowDock_InteractiveConsole_5
+verdiSetActWin -win $_InteractiveConsole_5
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+verdiSetSyncSelection -widget MTB_SOURCE_TAB_1
+debExit

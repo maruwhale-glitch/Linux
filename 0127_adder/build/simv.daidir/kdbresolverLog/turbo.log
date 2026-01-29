@@ -1,0 +1,3 @@
+Command Line: /tools/synopsys/vcs/W-2024.09-SP1/linux64/bin/elabcom -simflow -KDBRESOLVER -simvdaidir /home/aedu18/SUN/0127_adder/./build/simv.daidir -saveLevel -ssv -ssy -q -logdir /home/aedu18/SUN/0127_adder/./build/simv.daidir/kdbresolverLog
+uname(Linux kccisynop2 5.14.0-427.13.1.el9_4.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Apr 10 10:29:16 EDT 2024 x86_64)
+au time 0.016001 0.004391 0.007898 delta 93474816 93474816 total 326451200 326451200

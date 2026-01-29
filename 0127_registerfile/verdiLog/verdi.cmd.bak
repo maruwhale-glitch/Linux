@@ -1,0 +1,179 @@
+simSetSimulator "-vcssv" -exec "./build/simv" -args
+debImport "-dbdir" "./build/simv.daidir"
+debLoadSimResult /home/aedu18/SUN/0127_registerfile/build/wave.fsdb
+wvCreateWindow
+verdiSetActWin -win $_nWave2
+verdiWindowResize -win $_Verdi_1 "830" "370" "900" "700"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+verdiWindowResize -win $_Verdi_1 "1011" "181" "1409" "1141"
+srcTBInvokeSim
+verdiSetActWin -dock widgetDock_<Member>
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_registerfile" -win $_nTrace1
+srcSetScope "tb_registerfile" -delim "." -win $_nTrace1
+srcHBSelect "tb_registerfile" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {67 67 1 8 1 1}
+srcTBAddBrkPnt -line 67 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {124 124 1 6 1 1}
+srcTBAddBrkPnt -line 124 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {126 126 1 6 1 1}
+srcTBAddBrkPnt -line 126 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {124 124 1 6 1 1}
+srcTBSetBrkPnt -disable -index 2
+srcSelect -win $_nTrace1 -range {124 124 1 6 1 1}
+srcTBSetBrkPnt -delete -index 2
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {58 58 1 6 1 1}
+srcTBAddBrkPnt -line 58 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBAddBrkPnt -line 78 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBSetBrkPnt -disable -index 5
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBSetBrkPnt -delete -index 5
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBAddBrkPnt -line 78 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBSetBrkPnt -disable -index 6
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBSetBrkPnt -delete -index 6
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBAddBrkPnt -line 78 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {78 79 2 1 2 1} -backward
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {85 85 1 13 1 1}
+srcTBAddBrkPnt -line 85 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcTBRunSim
+srcHBSelect "tb_registerfile.drv" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBDrag -win $_nTrace1
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_registerfile.drv" -scope
+verdiSetActWin -dock widgetDock_<Watch>
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {3} -level 1
+srcTBRunSim
+verdiDockWidgetSetCurTab -dock windowDock_nWave_2
+verdiSetActWin -win $_nWave2
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+srcHBSelect "tb_registerfile.r_if" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBDrag -win $_nTrace1
+wvDumpScope "tb_registerfile.r_if"
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 0)}
+wvRenameGroup -win $_nWave2 {G1} {r_if(reg_if)}
+wvAddSignal -win $_nWave2 "/tb_registerfile/r_if/clk" "/tb_registerfile/r_if/we" \
+           "/tb_registerfile/r_if/RA1\[4:0\]" \
+           "/tb_registerfile/r_if/RA2\[4:0\]" \
+           "/tb_registerfile/r_if/WA\[4:0\]" \
+           "/tb_registerfile/r_if/WD\[31:0\]" \
+           "/tb_registerfile/r_if/RD1\[31:0\]" \
+           "/tb_registerfile/r_if/RD2\[31:0\]"
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 0)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 8)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 8)}
+wvSetPosition -win $_nWave2 {("G2" 0)}
+wvSetCursor -win $_nWave2 9434.430545 -snap {("G2" 0)}
+verdiSetActWin -win $_nWave2
+wvSetCursor -win $_nWave2 11124.459213 -snap {("G2" 0)}
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvScrollDown -win $_nWave2 0
+wvZoomAll -win $_nWave2
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBStepNext
+srcTBRunSim
+srcTBRunSim
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {1} -level 1
+verdiSetActWin -dock widgetDock_<Watch>
+srcTBDVCollapse -win $_nTrace1 -tab 1 -item {1} -level 1
+srcTBDVExpand -win $_nTrace1 -tab 1 -item {1} -level 1
+srcTBRunSim
+verdiWindowResize -win $_Verdi_1 "1" "31" "1278" "1360"
+verdiSetActWin -dock widgetDock_<Member>
+wvZoomOut -win $_nWave2
+wvZoomOut -win $_nWave2
+wvSetCursor -win $_nWave2 18792.160934 -snap {("G2" 0)}
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+verdiSetActWin -win $_nWave2
+wvScrollDown -win $_nWave2 0
+srcSelect -win $_nTrace1 -range {126 126 1 6 1 1}
+srcTBSetBrkPnt -disable -index 3
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcSelect -win $_nTrace1 -range {126 126 1 6 1 1}
+srcTBSetBrkPnt -delete -index 3
+srcSelect -win $_nTrace1 -range {126 126 1 6 1 1}
+srcTBAddBrkPnt -line 126 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {126 126 1 6 1 1}
+srcTBSetBrkPnt -disable -index 9
+srcSelect -win $_nTrace1 -range {86 86 1 13 1 1}
+srcTBAddBrkPnt -line 86 -file \
+           /home/aedu18/SUN/0127_registerfile/tb_registerfile/tb_registerfile.sv
+srcSelect -win $_nTrace1 -range {85 85 1 13 1 1}
+srcTBSetBrkPnt -disable -index 8
+srcSelect -win $_nTrace1 -range {86 86 1 13 1 1}
+srcTBSetBrkPnt -disable -index 10
+srcSelect -win $_nTrace1 -range {78 78 1 13 1 1}
+srcTBSetBrkPnt -disable -index 7
+srcSelect -win $_nTrace1 -range {58 58 1 6 1 1}
+srcTBSetBrkPnt -disable -index 4
+srcSelect -win $_nTrace1 -range {67 67 1 8 1 1}
+srcTBSetBrkPnt -disable -index 1
+srcTBSimQuit
+srcDeselectAll -win $_nTrace1
+srcTBInvokeSim
+srcHBSelect "tb_registerfile.drv" -win $_nTrace1
+srcSetScope "tb_registerfile.drv" -delim "." -win $_nTrace1
+srcHBDrag -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 0)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 5)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 0)}
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_registerfile.drv" -scope
+srcHBSelect "tb_registerfile.drv" -win $_nTrace1
+srcHBDrag -win $_nTrace1
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 1)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 4)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 5)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 6)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 7)}
+wvSetPosition -win $_nWave2 {("r_if(reg_if)" 0)}
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_registerfile.drv" -scope
+srcTBSimQuit
+srcTBInvokeSim
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcHBDrag -win $_nTrace1
+srcTBInsertDataTree -win $_nTrace1 -tab 1 -tree "tb_registerfile.drv" -scope
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcTBSimQuit
+srcHBDrag -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+debExit

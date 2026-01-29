@@ -1,0 +1,967 @@
+Command: /home/aedu18/SUN/0127_RISCV_SingleCycle/build/simv -sml=verdi +fsdb+gate=off -ucli2Proc -ucli -l /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Jan 27 16:22 2026
+Warning : License for product VCS-BASE-RUNTIME will expire within 23 days, on: 18-feb-2026.
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+
+ucli% synUtils::getArch
+linux64
+ucli% loaddl -simv /tools/synopsys/verdi/W-2024.09-SP2/share/PLI/VCS/LINUXAMD64/libnovas.so LoadFSDBDumpCmd;LoadFSDBDumpCmd
+LoadFSDBDumpCmd success
+ucli% config ckptfsdbcheck off;config endofsim noexit;config onfail {enable all};config followactivescope on;catch {setUcliVerdiConnected};set watch::resultTagsForVerdiBP {<ucli_break_bp_status_begin> <ucli_break_bp_status_end>};set ucliCore::support_restore_through_stask_in_verdi 1;cbug::config pretty_print auto;fsdbDumpfile {/home/aedu18/SUN/0127_RISCV_SingleCycle/inter.fsdb} ;fsdbDumpflush ; 
+*Verdi* Loading libsscore_vcs202409.so
+FSDB Dumper for VCS, Release Verdi_W-2024.09-SP2, Linux x86_64/64bit, 03/03/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file '/home/aedu18/SUN/0127_RISCV_SingleCycle/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% sps_interactive
+*Verdi* : Enable RPC Server(2617184)
+
+ucli% ucliCore::getToolPID
+2617184
+ucli% ucliCore::getToolPID
+2617184
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% puts $ucliCore::nativeUcliMode
+0
+
+ucli% ucliCore::getToolTopPID
+2617184
+ucli% pid
+2617196
+ucli% synUtils::sendTool -active {_icl_createSharedMemory /tmp/vcs_dve_general.aedu18.2617184 }
+
+ucli% if { [info vars watch::vcbp_str_len_limit_of_get_value] != ""} {set watch::vcbp_str_len_limit_of_get_value 1024}
+1024
+ucli% info command stateVerdiChangeCB
+
+ucli% proc stateVerdiChangeCB args { if {$ucliGUI::state eq "terminated"} {puts "\n<VERDI_Terminated>\n";catch {setVerdiSimTerminated}}}
+
+ucli% trace variable ucliGUI::state wu stateVerdiChangeCB
+
+ucli% if {[catch {rename synopsys::restore verdiHack::restore} ]} {puts "0"}
+
+ucli% proc synopsys::restore {args} { verdiHack::restore $args; puts "\n<VERDI_RESTORE>\n"}
+
+ucli% if {[catch {rename quit verdiHack::quit} ]} {puts "0"}
+
+ucli% proc quit {args} { if {[string length $args] == 0} { verdiHack::quit; } elseif {([string equal "-h" $args] == 1)||([string equal "-he" $args] == 1)||([string equal "-hel" $args] == 1)||([string equal "-help" $args] == 1)} { puts "\n quit           # Exit the simulation.\n \[-noprompt\]        (Exit the simulation and Verdi.)\n"} elseif {([string equal "-n" $args] == 1)||([string equal "-no" $args] == 1)||([string equal "-nop" $args] == 1)||([string equal "-nopr" $args] == 1)||([string equal "-nopro" $args] == 1)||([string equal "-noprom" $args] == 1)||([string equal "-nopromp" $args] == 1)||([string equal "-noprompt" $args] == 1)} { puts "\nVERDI_EXIT_N\n" } else { verdiHack::quit $args; } }
+
+ucli% if {[catch {rename exit verdiHack::exit} ]} {puts "0"}
+
+ucli% proc exit {args} { if {[string length $args] == 0} { verdiHack::exit; } elseif {([string equal "-h" $args] == 1)||([string equal "-he" $args] == 1)||([string equal "-hel" $args] == 1)||([string equal "-help" $args] == 1)} { puts "\n exit           # Exit the simulation.\n \[-noprompt\]        (Exit the simulation and Verdi.)\n"} elseif {([string equal "-n" $args] == 1)||([string equal "-no" $args] == 1)||([string equal "-nop" $args] == 1)||([string equal "-nopr" $args] == 1)||([string equal "-nopro" $args] == 1)||([string equal "-noprom" $args] == 1)||([string equal "-nopromp" $args] == 1)||([string equal "-noprompt" $args] == 1)} { puts "\nVERDI_EXIT_N\n" } else { verdiHack::exit $args; } }
+
+ucli% proc checkpoint::beforeRecreate {} { sps_interactive }
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% info procs
+ipi_get_str fsdbDumpMDAByFile fsdbDumpMDA echo fsdbDumpMemNow fsdbAutoSwitchDumpfile unknown sps_interactive auto_import stat fsdbDumpfile setenv auto_execok pkg_mkIndex stateVerdiChangeCB fsdbDumpSingle proc_body ipi_begin fsdbDumpoff getenv fsdbDumplimit fsdbDumpPattern ipi_handle ipi_get_prop fsdbDumpvarsByFile fsdbDumpMDAInScope lminus ipi_sim_get ls auto_load_index proc_args fsdbAddRuntimeSignal fsdbDumpSC print_message_info ridbDump fsdbDumpSVAoff fsdbSuppress fsdbDumpvars help fsdbDumpMDAOnChange ipi_control auto_qualify fsdbDumpMem sourceSavedOnbreakHandler tclPkgUnknown printenv ipi_handle_by_name helpdoc fsdbDumpMemInScope fsdbDumpFinish is_true fsdbDumpon sh fsdbQueryInfo LoadFSDBDumpCmd fsdbDumpPSL fsdbDumpSVA ipi_end wrapperSpecmanSn fsdbDumpSVAon fsdbDumpClassObjectByFile is_false auto_load fsdbDumpPSLon ipi_get_int64 fsdbSubstituteHier ipi_get_value ipi_iterate exit fsdbDumpMemInFile tclLog fsdbDumpflush get_unix_variable mem_debug ipi_scan fsdbDumpPSLoff fsdbDumpClassObject fsdbDumpvarsToFile set_unix_variable bgerror fsdbDumpStrength add_group fsdbSwitchDumpfile source add_wave sos_fsdbDumpvars ipi_set_prop unsetenv fsdbDumpvarsES readline fsdbDisplay ipi_handle_free set_group ipi_get quit define_proc_attributes tclPkgSetup fsdbDumpMDANow ipi_init_play_tcl fsdbDumpIO
+ucli% info commands
+ipi_get_str cchange subst fsdbDumpMDAByFile pwd cshow guiSource fsdbDumpMDA echo fsdbDumpMemNow fsdbAutoSwitchDumpfile ucliConnectToSharedMem unknown ucliIsScriptPauseByVerdi lrange sps_interactive auto_import setVerdiSimTerminated coverage case stat fsdbDumpfile break setenv dump auto_execok msglog linsert pkg_mkIndex dumplist catch stateVerdiChangeCB mpformat fsdbDumpSingle if join detach_sim halt proc_body abortScriptAfterDetachVerdi report_violations which lp_show ipi_begin pause dve_help fsdbDumpoff format getenv listing fsdbDumplimit package binary trace ctimeout onbreak after flush fsdbDumpPattern step restore ipi_handle power continue get_command_option_values force try foreach ipi_get_prop fsdbDumpvarsByFile lrepeat tailcall unset fsdbDumpMDAInScope lminus ipi_sim_get interp write_app_var lindex stack yield ls resetInterruptCount runAfterDetachVerdi eof saif list printvar create_command_group keysFileChangeCB virtual auto_load_index checkpoint proc_args finish fsdbAddRuntimeSignal cgettimeout sexpr lsearch fblocked fsdbDumpSC fanin lappend print_message_info proc cextract ridbDump writelist get_defined_commands cdump fsdbDumpSVAoff fsdbSuppress man set_sig_vas_in_waiting_input fconfigure fsdbDumpvars help fsdbDumpMDAOnChange ipi_control switch auto_qualify fsdbDumpMem mpexpr status sourceSavedOnbreakHandler tclPkgUnknown close printenv ipi_handle_by_name helpdoc thread lreverse set read fsdbDumpMemInScope initAttachableFile unalias fsdbDumpFinish setVerdiAttachable seek while set_cle_options is_true set_message_info writeKeyLog cbug fsdbDumpon find_forces yieldto sh start_verdi load fsdbQueryInfo memory sn vcsExecFuncInSharedObject cenable history puts gdb loadSharedObject tblog assertion resume _synopsys_cci_unalias socket tell open get_message_ids cadd exec pid stop LoadFSDBDumpCmd unloadSharedObject redirect fsdbDumpPSL throw fsdbDumpSVA ipi_end return ace wrapperSpecmanSn error fsdbDumpSVAon split fsdbDumpClassObjectByFile is_false array ucliAttachedByVerdi vbus get lreplace concat coroutine fcopy update parse_proc_arguments report_app_var run search setUcliVerdiStatus for append auto_load fsdbDumpPSLon ucliLaunchVerdi alias logFileChangeCB scan setUcliVerdiConnected apply abort set_current_command_mode release zlib chan loads _spw_define_proc_attributes ipi_get_int64 onerror print_suppressed_messages scope fileevent fsdbSubstituteHier inputFileChangeCB regexp resultTagsForVerdiCB set_app_var ipi_get_value cdelete upvar ipi_iterate save encoding onfail exit fsdbDumpMemInFile incr tclLog fsdbDumpflush get_message_info get_unix_variable show senv glob mem_debug ipi_scan GUIsource config fsdbDumpPSLoff time eval lassign fsdbDumpClassObject gets fsdbDumpvarsToFile tcl_exit set_unix_variable restart start change llength variable constraints xprop bgerror fsdbDumpStrength call clock info apropos add_group fsdbSwitchDumpfile ucliDetachVerdi source GUI_tcl_shell_puts global tcheck initreg add_wave report_timing sos_fsdbDumpvars ipi_set_prop next drivers cd file lmap unload namespace loaddl unsetenv get_app_var fsdbDumpvarsES suppress_message vwait dict readline fsdbDisplay uplevel ipi_handle_free date set_group lset rename ipi_get quit sh_list_key_bindings do unsuppress_message define_proc_attributes error_info tclPkgSetup expr printPromptStr regsub onCheckpointCB csave fsdbDumpMDANow dtl_load ipi_init_play_tcl lsort fsdbDumpIO doFileChangeCB _synopsys_cci_alias writeHistoryLog cdisable string
+ucli% set ucliCore::resultTagsForVerdi [list <?special_verdi_begin?> <?special_verdi_end?>]
+<?special_verdi_begin?> <?special_verdi_end?>
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% if {[catch {get uvm_pkg.UVM_VERSION_STRING} result] == 0} {puts $result}
+
+ucli% senv hasTB
+1
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: ./rtl/MCU.sv
+activeFrame: -1
+activeLine: 3
+activeScope: MCU
+activeThread: 6
+endCol: 0
+file: ./rtl/MCU.sv
+frame: -1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 3
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: MCU
+startCol: 0
+state: stopped
+thread: 6
+time: 0
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./rtl/MCU.sv
+./rtl/MCU.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% stop
+No stop points are set
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv 
+1
+ucli% stop -show 1
+1: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% stop -disable 1
+1
+ucli% stop -show 1
+1: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv -disable
+ucli% stop -delete 1
+1
+ucli% stop -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv 
+2
+ucli% stop -show 2
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% run
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/aedu18/SUN/0127_RISCV_SingleCycle/inter.fsdb". Fsdbfile name in task "build/wave.fsdb" is ignored.
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+
+Stop point #2 @ 10000 ps;  
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 10,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 2
+activeLine: 49
+activeScope: _vcs_unit__3408247080.\driver::send 
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 49
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: _vcs_unit__3408247080.\driver::send 
+startCol: 0
+state: stopped
+thread: 8
+time: 10000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% run
+<slp!&*()_+>
+[11][DRV], aluControl = 0, a = 0, b = 5, result = 5
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./testbench/tb_alu.sv<sls!&*()_+>line: 32<sls!&*()_+>time: 11000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+PASS!
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./testbench/tb_alu.sv<sls!&*()_+>line: 60<sls!&*()_+>time: 11000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+
+Stop point #2 @ 21000 ps;  
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 2
+activeLine: 49
+activeScope: _vcs_unit__3408247080.\driver::send 
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 49
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: _vcs_unit__3408247080.\driver::send 
+startCol: 0
+state: stopped
+thread: 8
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_alu.sv, 50 :         a_if.aluControl = t.aluControl;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 2
+activeLine: 50
+activeScope: _vcs_unit__3408247080.\driver::send 
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 50
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: _vcs_unit__3408247080.\driver::send 
+startCol: 0
+state: stopped
+thread: 8
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+DataPath.sv, 56 :     always_comb begin
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: ./rtl/DataPath.sv
+activeFrame: 2
+activeLine: 56
+activeScope: tb_alu.dut
+activeThread: 8
+endCol: 0
+file: ./rtl/DataPath.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 56
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.dut
+startCol: 0
+state: stopped
+thread: 8
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./rtl/DataPath.sv
+./rtl/DataPath.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_alu.sv, 103 :             #1;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 1
+activeLine: 103
+activeScope: tb_alu.unnamed$$_0
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 103
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.unnamed$$_0
+startCol: 0
+state: stopped
+thread: 8
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+DataPath.sv, 57 :         result = 0;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: ./rtl/DataPath.sv
+activeFrame: -1
+activeLine: 57
+activeScope: tb_alu.dut
+activeThread: 0
+endCol: 0
+file: ./rtl/DataPath.sv
+frame: -1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 57
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.dut
+startCol: 0
+state: stopped
+thread: 0
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./rtl/DataPath.sv
+./rtl/DataPath.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+DataPath.sv, 58 :         case (aluControl)
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: ./rtl/DataPath.sv
+activeFrame: -1
+activeLine: 58
+activeScope: tb_alu.dut
+activeThread: 0
+endCol: 0
+file: ./rtl/DataPath.sv
+frame: -1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 58
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.dut
+startCol: 0
+state: stopped
+thread: 0
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./rtl/DataPath.sv
+./rtl/DataPath.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+DataPath.sv, 68 :             `AND: result = a & b;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 21,000 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: ./rtl/DataPath.sv
+activeFrame: -1
+activeLine: 68
+activeScope: tb_alu.dut
+activeThread: 0
+endCol: 0
+file: ./rtl/DataPath.sv
+frame: -1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 68
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.dut
+startCol: 0
+state: stopped
+thread: 0
+time: 21000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./rtl/DataPath.sv
+./rtl/DataPath.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_alu.sv, 104 :             John.receive();
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 22,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 1
+activeLine: 104
+activeScope: tb_alu.unnamed$$_0
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 104
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.unnamed$$_0
+startCol: 0
+state: stopped
+thread: 8
+time: 22000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+<slp!&*()_+>
+[22][DRV], aluControl = 7, a = 2, b = 2, result = 2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./testbench/tb_alu.sv<sls!&*()_+>line: 32<sls!&*()_+>time: 22000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+PASS!
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: ./testbench/tb_alu.sv<sls!&*()_+>line: 72<sls!&*()_+>time: 22000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+tb_alu.sv, 100 :         for (int i = 0; i < 100; i++) begin
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 22,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 1
+activeLine: 100
+activeScope: tb_alu.unnamed$$_0
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 100
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.unnamed$$_0
+startCol: 0
+state: stopped
+thread: 8
+time: 22000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_alu.sv, 101 :             #10;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 22,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 1
+activeLine: 101
+activeScope: tb_alu.unnamed$$_0
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 101
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.unnamed$$_0
+startCol: 0
+state: stopped
+thread: 8
+time: 22000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_alu.sv, 102 :             John.send();
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 32,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 1
+activeLine: 102
+activeScope: tb_alu.unnamed$$_0
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 1
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 102
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: tb_alu.unnamed$$_0
+startCol: 0
+state: stopped
+thread: 8
+time: 32000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+
+Stop point #2 @ 32000 ps;  
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% stop -show 2
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 32,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 2
+activeLine: 49
+activeScope: _vcs_unit__3408247080.\driver::send 
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 49
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: _vcs_unit__3408247080.\driver::send 
+startCol: 0
+state: stopped
+thread: 8
+time: 32000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% next
+tb_alu.sv, 50 :         a_if.aluControl = t.aluControl;
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+2617184
+ucli% synEnv::isFinished
+0
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 32,000 ps.
+
+ucli% senv
+activeDomain: TB
+activeFile: ./testbench/tb_alu.sv
+activeFrame: 2
+activeLine: 50
+activeScope: _vcs_unit__3408247080.\driver::send 
+activeThread: 8
+endCol: 0
+file: ./testbench/tb_alu.sv
+frame: 2
+fsdbFilename: 
+hasTB: 1
+inputFilename: 
+keyFilename: ucli.key
+line: 50
+logFilename: /home/aedu18/SUN/0127_RISCV_SingleCycle/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 2617184
+scope: _vcs_unit__3408247080.\driver::send 
+startCol: 0
+state: stopped
+thread: 8
+time: 32000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename ./testbench/tb_alu.sv
+./testbench/tb_alu.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+2: -line 49 -file /home/aedu18/SUN/0127_RISCV_SingleCycle/testbench/tb_alu.sv
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% finish; quit
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 32000 ps
+CPU Time:      0.150 seconds;       Data structure size:   0.0Mb
+Tue Jan 27 16:47:11 2026
+
+<VERDI_Terminated>
+

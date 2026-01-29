@@ -1,0 +1,7 @@
+./rtl/CPU_RV32I.sv
+./rtl/ControlUnit.sv
+./rtl/DataPath.sv
+./rtl/MCU.sv
+./rtl/RAM.sv
+./rtl/ROM.sv
+./testbench/tb_riscv.sv
