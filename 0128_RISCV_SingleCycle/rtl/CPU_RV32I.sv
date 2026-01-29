@@ -16,8 +16,8 @@ module CPU_RV32I (
     logic [3:0] aluControl;
     logic [2:0] RFWDSrcMuxSel;
     logic       branch;
-    logic       JAL;
-    logic       JALR;
+    logic       jal;
+    logic       jalr;
 
     ControlUnit U_ControlUnit (.*);
     DataPath U_DataPath (.*);

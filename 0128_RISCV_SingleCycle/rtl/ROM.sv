@@ -7,43 +7,42 @@ module ROM (
     logic [31:0] rom[0:2**10-1];
 
     initial begin
-        rom[1] = 32'h123450b7;
-        rom[2] = 32'h00000117;
-        rom[3] = 32'h008001ef;
-        rom[4] = 32'h0ff00213;
-        rom[5] = 32'h00100213;
-        rom[6] = 32'h004002ef;
-        rom[7] = 32'h00028367;
-        rom[8] = 32'h0ff00393;
-        rom[9] = 32'h00200393;
+        rom[0] = 32'h000120b7;
+        rom[1] = 32'h00001117;
+        rom[2] = 32'h008001ef;
+        rom[3] = 32'h0ee00213;
+        rom[4] = 32'h00100293;
+        rom[5] = 32'h04000313;
+        rom[6] = 32'h000303e7;
     end
 
     assign data = rom[addr[31:2]];
 endmodule
-// # ---------------------------------------------------------
-// # Step 1: LUI (Load Upper Immediate) 테스트
-// # ---------------------------------------------------------
-// lui  x1, 0x12345     # x1 = 0x12345000
+
 
 // # ---------------------------------------------------------
-// # Step 2: AUIPC (Add Upper Immediate to PC) 테스트
+// # Step 1: U-Type Test (Upper Immediate)
 // # ---------------------------------------------------------
-// auipc x2, 0x0        # x2 = 현재 PC
-
+// lui   x1, 0x00012        # x1 = 0x00012000 (상위 20비트 로드)
+// auipc x2, 0x00001        # x2 = 현재 PC + 0x00001000
+                        //  # ImmGen이 상위 비트를 제대로 처리하는지 확인
+// 
 // # ---------------------------------------------------------
-// # Step 3: JAL (Jump and Link) 테스트
+// # Step 2: J-Type Test (Jump and Link)
 // # ---------------------------------------------------------
-// jal  x3, LABEL_1     # LABEL_1으로 점프
-// addi x4, x0, 0xFF    # (건너뛰어야 함)
-
-// LABEL_1:
-// addi x4, x0, 0x01    # x4 = 1
-
+// jal   x3, JUMP_TARGET    # x3 = PC + 4 (복귀 주소 저장)
+                        //  # JUMP_TARGET으로 점프
+// addi  x4, x0, 0xEE       # (Skip) 실행되면 안 됨
+// 
+// JUMP_TARGET:
+// addi  x5, x0, 0x01       # 성공 마커
+// 
 // # ---------------------------------------------------------
-// # Step 4: JALR (Jump and Link Register) 테스트
+// # Step 3: I-Type Jump Test (Jump and Link Register)
 // # ---------------------------------------------------------
-// jal  x5, LABEL_2     # LABEL_2로 점프하여 x5에 return address 저장
-
-// LABEL_2:
-// jalr x6, x5, 0       # x5(return address)로 돌아가기
-// addi x7, x0, 0xFF    # (건너뛰어야 함)
+// # 주소 0x40으로 점프하기 위한 설정
+// addi  x6, x0, 0x40       # x6 = 0x40
+// jalr  x7, 0(x6)          # PC = x6 + 0, x7 = PC + 4 (복귀 주소 저장)
+                        //  # 이제 PC는 0x40으로 강제 이동함
+// 
+// # (주소 0x40 위치에는 검증용 명령어가 미리 로드되어 있어야 함)
