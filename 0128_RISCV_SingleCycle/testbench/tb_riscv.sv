@@ -1,6 +1,3 @@
-
-
-
 interface ram_if (
     input logic clk,
     input logic reset
@@ -40,15 +37,11 @@ class generator;
     task automatic run(int loop);
         repeat (loop) begin
             tr = new();
-            if (!tr.randomize())
-                $error(
-                    "Randomization failed!"
-                );  //error가 뜨면 멈춘다는데? 아니고 fatal이 멈춘대
+            if (!tr.randomize()) $error("Randomization failed!");
             tr.print("GEN");
             gen2drv_mbox.put(tr);
             gen2scb_mbox.put(tr);
             @(drv2gen_event);
-            // #10; 사실 클럭을 보면서 해야 하는데 나중에 clk 맞춰서 해볼 것.
         end
     endtask  //automatic
 
@@ -118,9 +111,9 @@ class scoreboard;
     mailbox #(transaction) gen2scb_mbox;
 
     int cnt = 0;
-    int pass_cnt = 0;  
-    int fail_cnt = 0;  
-    
+    int pass_cnt = 0;
+    int fail_cnt = 0;
+
     logic [31:0] golden_mem[0:2**10-1];
 
     function new(mailbox#(transaction) mon2scb_mbox,
@@ -136,24 +129,20 @@ class scoreboard;
 
             if (tr_mon.we == 1) begin
                 if (tr_mon.wdata == tr_gen.wdata) begin
-                    // Word 단위 주소 정렬 적용
                     golden_mem[tr_mon.addr[9:2]] = tr_mon.wdata;
                 end
-            end 
-            else begin
-                // 여기서 별도의 exists 체크 없이 바로 꺼내 써도 안 쓴 주소는 0이 나옵니다.
+            end else begin
                 logic [31:0] expected_data = golden_mem[tr_mon.addr[9:2]];
-
                 if (expected_data === tr_mon.rdata) begin
-                    $display("[SUCCESS] Addr:%0h | Exp:%0h | Act:%0h", 
-                              tr_mon.addr, expected_data, tr_mon.rdata);
+                    $display("[SUCCESS] Addr:%0h | Exp:%0h | Act:%0h",
+                             tr_mon.addr, expected_data, tr_mon.rdata);
                     pass_cnt++;
                 end else begin
-                    $display("[FAIL] Addr:%0h | Exp:%0h | Act:%0h", 
-                              tr_mon.addr, expected_data, tr_mon.rdata);
+                    $display("[FAIL] Addr:%0h | Exp:%0h | Act:%0h",
+                             tr_mon.addr, expected_data, tr_mon.rdata);
                     fail_cnt++;
                 end
-                cnt++; 
+                cnt++;
             end
         end
     endtask
@@ -235,7 +224,6 @@ module tb_riscv ();
 
     initial begin
         clk = 0;
-
         env = new(r_if);
         env.run();
         #5000 $finish;
