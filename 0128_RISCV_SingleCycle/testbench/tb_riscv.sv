@@ -9,10 +9,10 @@ interface ram_if (
 endinterface
 
 class transaction;
-    rand logic        we;
-    rand logic [ 9:0] addr;
-    rand logic [31:0] wdata;
-    logic      [31:0] rdata;
+    randc logic        we;
+    randc logic [ 9:0] addr;
+    randc logic [31:0] wdata;
+    logic       [31:0] rdata;
 
     task automatic print(string name);
         $display("[%0d][%s] we = %0d, addr = %0h, wdata = %0h, rdata = %0h",
@@ -37,7 +37,7 @@ class generator;
     task automatic run(int loop);
         repeat (loop) begin
             tr = new();
-            if (!tr.randomize()) $error("Randomization failed!");
+            if (!tr.randomize) $error("Randomize Fail");
             tr.print("GEN");
             gen2drv_mbox.put(tr);
             gen2scb_mbox.put(tr);
@@ -73,7 +73,7 @@ class driver;
             r_if.addr  <= tr.addr;
             r_if.wdata <= tr.wdata;
             tr.print("DRV");
-            @(negedge r_if.clk);
+            @(posedge r_if.clk);
             ->drv2gen_event;
         end
     endtask  //automatic
@@ -110,11 +110,12 @@ class scoreboard;
     mailbox #(transaction) mon2scb_mbox;
     mailbox #(transaction) gen2scb_mbox;
 
+    int total = 0;
     int cnt = 0;
     int pass_cnt = 0;
     int fail_cnt = 0;
 
-    logic [31:0] golden_mem[0:2**10-1];
+    logic [31:0] ref_mem[0:2**10-1];
 
     function new(mailbox#(transaction) mon2scb_mbox,
                  mailbox#(transaction) gen2scb_mbox);
@@ -129,10 +130,10 @@ class scoreboard;
 
             if (tr_mon.we == 1) begin
                 if (tr_mon.wdata == tr_gen.wdata) begin
-                    golden_mem[tr_mon.addr[9:2]] = tr_mon.wdata;
+                    ref_mem[tr_mon.addr[9:2]] = tr_mon.wdata;
                 end
             end else begin
-                logic [31:0] expected_data = golden_mem[tr_mon.addr[9:2]];
+                logic [31:0] expected_data = ref_mem[tr_mon.addr[9:2]];
                 if (expected_data === tr_mon.rdata) begin
                     $display("[SUCCESS] Addr:%0h | Exp:%0h | Act:%0h",
                              tr_mon.addr, expected_data, tr_mon.rdata);
@@ -144,6 +145,7 @@ class scoreboard;
                 end
                 cnt++;
             end
+            total++;
         end
     endtask
 
@@ -152,6 +154,7 @@ class scoreboard;
         $display("\n=======================================");
         $display("          FINAL VERIFICATION REPORT    ");
         $display("=======================================");
+        $display(" Total             : %0d", total);
         $display(" Total Read Checks : %0d", cnt);
         $display(" Pass Count        : %0d", pass_cnt);
         $display(" Fail Count        : %0d", fail_cnt);
