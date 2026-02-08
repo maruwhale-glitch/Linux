@@ -15,14 +15,19 @@ COMP_OPT = -full64 -sverilog $(INC_DIR)\
 all : vcs simv verdi
 
 generate_f:
-	find . -name "*.v" -o -name "*.sv" > files.f
+	echo "./rtl/UART.sv" > files.f
+	echo "./rtl/Uart_Rx.sv" >> files.f
+	echo "./rtl/Uart_Tx.sv" >> files.f
+	echo "./rtl/FIFO.sv" >> files.f
+	echo "./testbench/tb_UART_PERIPH.sv" >> files.f
 
 vcs: generate_f
 	mkdir -p $(BUILD_DIR)
 	vcs $(COMP_OPT) -f files.f 
 
-simv: 
-	$(SIMV) -l $(BUILD_DIR)/simulation.log
+simv:
+	@mkdir -p $(BUILD_DIR)
+	export NOVAS_FSDB_ENV_DUMP_SEQ_NUM=on;$(SIMV) +UVM_TESTNAME=test -l $(BUILD_DIR)/simulation.log
 
 verdi:
 	verdi -dbdir $(BUILD_DIR)/simv.daidir -ssf $(BUILD_DIR)/wave.fsdb &

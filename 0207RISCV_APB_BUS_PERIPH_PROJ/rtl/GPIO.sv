@@ -12,7 +12,7 @@ module GPIO_Periph (
     output logic [31:0] PRDATA,
     output logic        PREADY,
     // External Signals
-    inout logic [ 3:0] gpio
+    inout wire [ 3:0] gpio
 );
 
     logic [3:0] moder;

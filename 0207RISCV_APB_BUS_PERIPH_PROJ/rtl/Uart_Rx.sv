@@ -30,8 +30,8 @@ module Uart_Rx #(
 
     always_ff @(posedge PCLK, posedge PRESET) begin
         if (PRESET) begin
-            r_baud_cnt      <= 0;
-            r_baud_tick     <= 0;
+            r_baud_cnt  <= 0;
+            r_baud_tick <= 0;
         end else begin
             if (r_baud_cnt == DIVIDER_CNT - 1) begin
                 r_baud_cnt  <= 0;
@@ -63,17 +63,17 @@ module Uart_Rx #(
                 end
                 S_START_BIT: begin
                     if (r_baud_tick) begin
-                        r_baud_tick_cnt <= r_baud_tick_cnt + 1;
                         if (r_baud_tick_cnt == 4'd7) begin
                             r_state         <= S_DATA_BITS;
                             r_bit_cnt       <= 0;
                             r_baud_tick_cnt <= 0;
+                        end else begin
+                            r_baud_tick_cnt <= r_baud_tick_cnt + 1;
                         end
                     end
                 end
                 S_DATA_BITS: begin
                     if (r_baud_tick) begin
-                        r_baud_tick_cnt <= r_baud_tick_cnt + 1;
                         if (r_baud_tick_cnt == 4'd15) begin
                             r_data[r_bit_cnt] <= rx;
                             r_baud_tick_cnt   <= 4'd0;
@@ -83,16 +83,19 @@ module Uart_Rx #(
                             end else begin
                                 r_bit_cnt <= r_bit_cnt + 1;
                             end
+                        end else begin
+                            r_baud_tick_cnt <= r_baud_tick_cnt + 1;
                         end
                     end
                 end
                 S_STOP_BIT: begin
                     if (r_baud_tick) begin
-                        r_baud_tick_cnt <= r_baud_tick_cnt + 1;
                         if (r_baud_tick_cnt == 4'd15) begin
                             r_state  <= S_IDLE;
                             data_out <= r_data;
                             rx_done  <= 1'b1;
+                        end else begin
+                            r_baud_tick_cnt <= r_baud_tick_cnt + 1;
                         end
                     end
                 end

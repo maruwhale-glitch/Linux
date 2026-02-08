@@ -6,7 +6,7 @@ module MCU (
     output logic [3:0] gpoa,
     output logic [3:0] gpob,
     input  logic [3:0] gpic,
-    inout  logic [3:0] gpiod,
+    inout  wire [3:0] gpiod,
     input  logic       Rx,
     output logic       Tx
 );
