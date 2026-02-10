@@ -12,6 +12,8 @@ COMP_OPT = -full64 -sverilog $(INC_DIR)\
 
 # 			-race=all 
 
+SIGNAL          = signal.rc
+
 all : vcs simv verdi
 
 generate_f:
@@ -30,7 +32,7 @@ simv:
 	export NOVAS_FSDB_ENV_DUMP_SEQ_NUM=on;$(SIMV) +UVM_TESTNAME=test -l $(BUILD_DIR)/simulation.log
 
 verdi:
-	verdi -dbdir $(BUILD_DIR)/simv.daidir -ssf $(BUILD_DIR)/wave.fsdb &
+	verdi -dbdir $(BUILD_DIR)/simv.daidir -ssf $(BUILD_DIR)/wave.fsdb -sswr $(SIGNAL) &
 
 clean:
 	rm -rf $(BUILD_DIR) csrc novas*.* ucli.key verdilog verdiLog files.f inter*.* *.fsdb

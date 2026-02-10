@@ -76,8 +76,10 @@ class apb_write_seq extends uvm_sequence #(apb_seq_item);
             start_item(apb_write_item);
             assert (apb_write_item.randomize() with {
                 PWRITE == 1;
+                PADDR == 32'h10005008;
             });  // 쓰기 모드 고정
             finish_item(apb_write_item);
+            #1000;
         end
     endtask
 endclass
@@ -114,8 +116,10 @@ class apb_read_seq extends uvm_sequence #(apb_seq_item);
             start_item(apb_read_item);
             assert (apb_read_item.randomize() with {
                 PWRITE == 0;
+                PADDR == 32'h10005004;
             });  // 읽기 모드 고정
             finish_item(apb_read_item);
+            #1500000;
         end
     endtask
 endclass
@@ -156,9 +160,10 @@ class apb_driver extends uvm_driver #(apb_seq_item);
         @(posedge a_if.PCLK);
         a_if.PENABLE <= 1;  //ACCESS
         wait (a_if.PREADY == 1);
-        if (!apb_item.PWRITE) apb_item.PRDATA = a_if.PRDATA;
-        apb_item.PREADY = a_if.PREADY;
-
+        if (!apb_item.PWRITE) begin
+            apb_item.PRDATA <= a_if.PRDATA;
+            apb_item.PREADY <= a_if.PREADY;
+        end
         @(posedge a_if.PCLK);
         a_if.PSEL    <= 0;
         a_if.PENABLE <= 0;
@@ -186,7 +191,7 @@ class uart_driver extends uvm_driver #(uart_seq_item);
         forever begin
             seq_item_port.get_next_item(uart_item);
             drive_serial(uart_item);
-            seq_item_port.item_done(uart_item);
+            seq_item_port.item_done();
         end
     endtask
 
@@ -395,11 +400,11 @@ class scoreboard extends uvm_scoreboard;
             if (apb_seq.PWRITE) begin
                 uart_tx_fifo.get(uart_seq);
                 if (apb_seq.PWDATA[7:0] == uart_seq.rx_data) begin
-                    `uvm_info("SCB", $sformatf("PASS! Data match : 0x%0h",
+                    `uvm_info("SCB", $sformatf("WRITE PASS! Data match : 0x%0h",
                                                uart_seq.rx_data), UVM_LOW)
                 end else begin
                     `uvm_error("SCB", $sformatf(
-                               "FAIL! APB : 0x%0h UART : 0x%0h",
+                               "WRITE FAIL! APB : 0x%0h UART : 0x%0h",
                                apb_seq.PWDATA[7:0],
                                uart_seq.rx_data
                                ))
@@ -407,12 +412,12 @@ class scoreboard extends uvm_scoreboard;
             end else begin
                 uart_rx_fifo.get(uart_seq);
                 if (apb_seq.PRDATA[7:0] == uart_seq.rx_data) begin
-                    `uvm_info("SCB", $sformatf("[RX PASS] Data match : 0x%0h",
+                    `uvm_info("SCB", $sformatf("RX PASS Data match : 0x%0h",
                                                apb_seq.PRDATA), UVM_LOW)
 
                 end else begin
                     `uvm_error("SCB", $sformatf(
-                               "[RX FAIL] APB Read:0x%0h != UART Rx:0x%0h",
+                               "RX FAIL APB Read:0x%0h != UART Rx:0x%0h",
                                apb_seq.PRDATA[7:0],
                                uart_seq.rx_data
                                ))
@@ -471,17 +476,19 @@ class test extends uvm_test;
         u_tx_seq = uart_tx_seq::type_id::create("u_tx_seq");
 
         `uvm_info("test", "SCENARIO 1 : TX TEST", UVM_LOW)
-
         a_wr_seq.start(e.a_agent.seqr);
-        #2000000;
+        #(104160 * 10 * 3 *10);  
+
+
         `uvm_info("test", "SCENARIO 2 : APB Write → UART TX", UVM_LOW)
         fork
             u_tx_seq.start(e.u_agent.seqr);
             begin
-                #1500000;
+                #(10416*9);
                 a_rd_seq.start(e.a_agent.seqr);
             end
         join
+
 
         #1000000;
         phase.drop_objection(this);
@@ -528,14 +535,15 @@ module tb_UART ();
     initial begin
         PCLK   = 0;
         PRESET = 1;
+        fork
+            begin
+                #15;
+                PRESET = 0;
+            end
+        join_none
         uvm_config_db#(virtual APB_if)::set(null, "*", "APB_if", a_if);
         uvm_config_db#(virtual UART_if)::set(null, "*", "UART_if", u_if);
         run_test("test");
-    end
-
-    initial begin
-        #15;
-        PRESET = 0;
     end
 
 endmodule
