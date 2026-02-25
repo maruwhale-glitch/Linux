@@ -8,7 +8,7 @@ COMP_OPT = -full64 -sverilog $(INC_DIR)\
 			-debug_access+all -kdb -lca \
 			-ntb_opts uvm-1.2 \
 			-timescale=1ns/100ps \
-			-o $(BUILD_DIR)/simv -l $(BUILD_DIR)/comp.log
+			-o $(BUILD_DIR)/simv
 
 # 			-race=all 
 
@@ -21,8 +21,7 @@ vcs: generate_f
 	mkdir -p $(BUILD_DIR)
 	vcs $(COMP_OPT) -f files.f 
 
-simv: 
-	$(SIMV) -l $(BUILD_DIR)/simulation.log
+simv: $(SIMV)
 
 verdi:
 	verdi -dbdir $(BUILD_DIR)/simv.daidir -ssf $(BUILD_DIR)/wave.fsdb &

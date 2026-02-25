@@ -42,7 +42,7 @@ class apb_seq_item extends uvm_sequence_item;
         super.new(name);
     endfunction
 
-    `uvm_object_utils_begin(apb_seq_item);
+    `uvm_object_utils_begin(apb_seq_item)
         `uvm_field_int(PADDR, UVM_DEFAULT)
         `uvm_field_int(PWRITE, UVM_DEFAULT)
         `uvm_field_int(PWDATA, UVM_DEFAULT)
@@ -477,14 +477,14 @@ class test extends uvm_test;
 
         `uvm_info("test", "SCENARIO 1 : TX TEST", UVM_LOW)
         a_wr_seq.start(e.a_agent.seqr);
-        #(104160 * 10 * 3 *10);  
+        #(104160 * 10 * 3 * 10);
 
 
         `uvm_info("test", "SCENARIO 2 : APB Write → UART TX", UVM_LOW)
         fork
             u_tx_seq.start(e.u_agent.seqr);
             begin
-                #(10416*9);
+                #(10416 * 9);
                 a_rd_seq.start(e.a_agent.seqr);
             end
         join
@@ -533,17 +533,16 @@ module tb_UART ();
     end
 
     initial begin
-        PCLK   = 0;
-        PRESET = 1;
-        fork
-            begin
-                #15;
-                PRESET = 0;
-            end
-        join_none
         uvm_config_db#(virtual APB_if)::set(null, "*", "APB_if", a_if);
         uvm_config_db#(virtual UART_if)::set(null, "*", "UART_if", u_if);
         run_test("test");
     end
 
+
+    initial begin
+        PCLK   = 0;
+        PRESET = 1;
+        #15;
+        PRESET = 0;
+    end
 endmodule

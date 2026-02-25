@@ -1,0 +1,125 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
+interface APB_if (
+    input bit PCLK,
+    input bit PRESET
+);
+    logic [31:0] PADDR;
+    logic        PWRITE;
+    logic        PENABLE;
+    logic [31:0] PWDATA;
+    logic        PSEL;
+    logic [31:0] PRDATA;
+    logic        PREADY;
+endinterface
+
+interface UART_if (
+    input bit PCLK,
+    input bit PRESET
+);
+    logic Rx;
+    logic Tx;
+endinterface
+
+class apb_seq_item extends uvm_sequence_item;
+    rand bit [31:0] PADDR;
+    rand bit        PWRITE;
+    rand bit [31:0] PWDATA;
+
+    logic    [31:0] PRDATA;
+    logic           PREADY;
+
+    constraint c_addr_range {PADDR inside {[32'h10005000 : 32'h100050ff]};}
+
+    function new(string name = "apb_seq_item");
+        super.new(name);
+    endfunction
+
+    `uvm_object_utils_begin(apb_seq_item)
+        `uvm_field_int(PADDR, UVM_DEFAULT)
+        `uvm_field_int(PWRITE, UVM_DEFAULT)
+        `uvm_field_int(PWDATA, UVM_DEFAULT)
+    `uvm_object_utils_end
+
+endclass
+
+class uart_seq_item extends uvm_sequence_item;
+    rand logic [7:0] rx_data;
+
+    function new(string name = "uart_seq_item");
+        super.new(name);
+    endfunction
+
+    `uvm_object_utils_begin(uart_seq_item)
+        `uvm_field_int(rx_data, UVM_DEFAULT)
+    `uvm_object_utils_end
+endclass
+
+
+
+
+
+
+module tb_UART ();
+
+    bit PCLK;
+    bit PRESET;
+
+    always #5 PCLK = ~PCLK;
+
+    APB_if a_if (
+        .PCLK  (PCLK),
+        .PRESET(PRESET)
+    );
+
+    UART_if u_if (
+        .PCLK  (PCLK),
+        .PRESET(PRESET)
+    );
+
+    UART dut (
+        .PCLK   (PCLK),
+        .PRESET (PRESET),
+        .PADDR  (a_if.PADDR),
+        .PWRITE (a_if.PWRITE),
+        .PENABLE(a_if.PENABLE),
+        .PWDATA (a_if.PWDATA),
+        .PSEL   (a_if.PSEL),
+        .PRDATA (a_if.PRDATA),
+        .PREADY (a_if.PREADY),
+
+        .Rx(u_if.Rx),
+        .Tx(u_if.Tx)
+    );
+
+    initial begin
+        $fsdbDumpfile("build/wave.fsdb");
+        $fsdbDumpvars(0, tb_UART);
+    end
+
+    initial begin
+        uvm_config_db#(virtual APB_if)::set(null, "*", "APB_if", a_if);
+        uvm_config_db#(virtual UART_if)::set(null, "*", "UART_if", u_if);
+        run_test("test");
+    end
+
+    initial begin
+        PCLK   = 0;
+        PRESET = 1;
+        #15;
+        PRESET = 0;
+    end
+endmodule
+
+
+
+
+
+
+
+
+
+
+
+
