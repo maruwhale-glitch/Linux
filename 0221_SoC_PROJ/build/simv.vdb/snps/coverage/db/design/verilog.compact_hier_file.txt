@@ -1,0 +1,4 @@
+\$unit::./rtl/I2C_MASTER.sv::./testbench/tb_I2C_MASTER.sv...@2926896351 02
+tb_I2C_MASTER4070
+uvm_custom_install_recording4070
+uvm_custom_install_verdi_recording4070

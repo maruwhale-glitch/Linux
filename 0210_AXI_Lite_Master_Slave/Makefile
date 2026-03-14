@@ -6,7 +6,7 @@ INC_DIR = +incdir+$(RTL_DIR)
 SIMV = ./build/simv
 COMP_OPT = -full64 -sverilog $(INC_DIR)\
 			-debug_access+all -kdb -lca \
-			#-ntb_opts uvm-1.2 \#
+			-ntb_opts uvm-1.2
 			-timescale=1ns/100ps \
 			-o $(BUILD_DIR)/simv
 
